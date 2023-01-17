@@ -23,7 +23,7 @@ using namespace std;
 
 Node *takeinput()
 {
-	int input[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, -1};
+	int input[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1};
 	int i = 0;
 
 	int data;
@@ -83,8 +83,43 @@ Node *reverse(Node *start, Node *end, Node *last){
     return start;
 }
 
-
 Node *kReverse(Node *head, int k){
+	if (head == NULL){
+		return head;
+	}
+	
+	Node* end = head;
+	Node* start = head;
+	Node* last = NULL;
+
+    int i = 1;
+    int test = 1;
+
+    while(end->next != NULL && test <= 9){
+        cout << "i: " << i <<  " Datos: " << end->data << endl;
+
+        if(i == k){
+            cout << "head: " << head->data << endl;
+            cout << "start: " << start->data << endl;
+            cout << "end: " << end->data << endl;
+            cout << "i: " << i << endl;
+            i = 1;
+            last = end;
+            start = end->next;
+            end = start;
+            continue;
+        }
+
+        end = end->next;
+        i++;
+        cout << "break" << endl;
+        test++;
+    }
+    return head;
+}
+
+
+Node *kReverse2(Node *head, int k){
 	if (head == NULL){
 		return head;
 	}
@@ -98,7 +133,6 @@ Node *kReverse(Node *head, int k){
 		if (i == k){
 			cout << "start: " << start->data << " end: " << end->data << endl;
 			cout << "reversa" << endl;
-			last = reverse(start, end, last);
 			start = end->next;
 			end = end->next;
 			i = 1;
